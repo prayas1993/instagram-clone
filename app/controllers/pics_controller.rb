@@ -3,6 +3,7 @@ before_action :find_pic , only: [:show , :edit , :update , :destroy]
 
 
 def index
+	@pics=Pic.all.order("created_at DESC")
 end
 
 def new
@@ -24,9 +25,16 @@ def edit
 end
 
 def update
+	if @pic.update(pics_params)
+		redirect_to pic_path
+	else
+	 render 'edit'
+	end 	
 end
 
 def destroy
+	@pic.destroy
+	redirect_to root_path
 end
 
  private
