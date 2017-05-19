@@ -7,11 +7,11 @@ def index
 end
 
 def new
-	@pic=Pic.new
+	@pic=current_user.pics.build
 end
 
 def create
-	@pic = Pic.new(pics_params)
+	@pic = current_user.pics.build(pics_params)
 
 	 if @pic.save
 	 	redirect_to @pic , notice: "Yesss,it was posted!"
